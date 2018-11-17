@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `sz-medien`
 --
+create database sz-medien if not exists;
 
 -- --------------------------------------------------------
 
