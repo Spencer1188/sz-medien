@@ -2705,7 +2705,8 @@ i.left {
 
 i.right {
   float: right;
-  margin-left: 15px;
+  margin-right: 15px;
+	
 }
 
 i.tiny {
@@ -3002,7 +3003,7 @@ table.highlight > tbody > tr {
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: rgba(242, 242, 242, 0.5);
+  background-color: rgba(41,107,228,0.3);
 }
 
 table.centered thead tr th, table.centered tbody tr td {
@@ -3336,6 +3337,11 @@ td, th {
 
 .right {
   float: right !important;
+	
+}
+
+.abst20{
+	margin-right: 40px !important;
 }
 
 .no-select, input[type=range],
@@ -4771,8 +4777,12 @@ small {
 }
 
 .card.small .card-image, .card.medium .card-image, .card.large .card-image {
-  max-height: 60%;
-  overflow: hidden;
+  height: 160px;
+  overflow: hidde;
+}
+
+.image-card-big{
+	height: 25% !important;
 }
 
 .card.small .card-image + .card-content, .card.medium .card-image + .card-content, .card.large .card-image + .card-content {
@@ -6229,9 +6239,9 @@ input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #26a69a;
-  -webkit-box-shadow: 0 1px 0 0 #26a69a;
-          box-shadow: 0 1px 0 0 #26a69a;
+  border-bottom: 1px solid #42a5f5 ;
+  -webkit-box-shadow: 0 1px 0 0 #42a5f5 ;
+          box-shadow: 0 1px 0 0 #42a5f5 ;
 }
 
 input:not([type]):focus:not([readonly]) + label,
@@ -6247,7 +6257,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
 input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #26a69a;
+  color: #42a5f5 ;
 }
 
 input:not([type]):focus.valid ~ label,
@@ -6263,7 +6273,7 @@ input[type=tel]:not(.browser-default):focus.valid ~ label,
 input[type=number]:not(.browser-default):focus.valid ~ label,
 input[type=search]:not(.browser-default):focus.valid ~ label,
 textarea.materialize-textarea:focus.valid ~ label {
-  color: #4CAF50;
+  color: #42a5f5 ;
 }
 
 input:not([type]):focus.invalid ~ label,
@@ -6324,9 +6334,9 @@ input.valid[type=search]:not(.browser-default),
 input.valid[type=search]:not(.browser-default):focus,
 textarea.materialize-textarea.valid,
 textarea.materialize-textarea.valid:focus, .select-wrapper.valid > input.select-dropdown {
-  border-bottom: 1px solid #4CAF50;
-  -webkit-box-shadow: 0 1px 0 0 #4CAF50;
-          box-shadow: 0 1px 0 0 #4CAF50;
+  border-bottom: 1px solid #42a5f5 ;
+  -webkit-box-shadow: 0 1px 0 0 #42a5f5 ;
+          box-shadow: 0 1px 0 0 #42a5f5 ;
 }
 
 input.invalid:not([type]), input.invalid:not([type]):focus,
@@ -6355,9 +6365,9 @@ input.invalid[type=search]:not(.browser-default):focus,
 textarea.materialize-textarea.invalid,
 textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid > input.select-dropdown,
 .select-wrapper.invalid > input.select-dropdown:focus {
-  border-bottom: 1px solid #F44336;
-  -webkit-box-shadow: 0 1px 0 0 #F44336;
-          box-shadow: 0 1px 0 0 #F44336;
+  border-bottom: 1px solid #42a5f5 ;
+  -webkit-box-shadow: 0 1px 0 0 #42a5f5 ;
+          box-shadow: 0 1px 0 0 #42a5f5 ;
 }
 
 input:not([type]).valid ~ .helper-text[data-success],
@@ -6589,7 +6599,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field .prefix.active {
-  color: #26a69a;
+  color: #42a5f5;
 }
 
 .input-field .prefix ~ input,
