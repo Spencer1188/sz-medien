@@ -24,40 +24,37 @@
 	</div>
 	<!--- Login -->
 	<div class="container">
-		<form method="post" action="php/userlogin.php">
 		<div class="row row-small">
 			<div class="input-field col s12">
 			  <i class="material-icons prefix">account_circle</i>
-			  <input id="icon_prefix" type="text" name="username" class="validate">
-			  <label for="icon_prefix">Login Name</label>
+			  <input id="usrname" type="text" name="username">
+			  <label for="usrname">Login Name</label>
 			</div>
 		</div>
 		<div class="row row-small">
 			<div class="input-field col s12">
 			  <i class="material-icons prefix">dialpad</i>
-			  <input id="icon_dialpad" type="password" name="pw" class="validate">
-			  <label for="icon_dialpad">Password</label>
+			  <input id="password" type="password" name="pw">
+			  <label for="password">Password</label>
 			</div>
 		</div>
-			<div class="row center">
-				<button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Login<i class="material-icons right" style="margin-left: 15px">send</i>
+			<div class="row center" id="pre-loader">
+				<button class="btn waves-effect waves-light blue lighten-1" name="action" id="submit">Login<i class="material-icons right" style="margin-left: 15px">send</i>
 				</button>
 			</div>
-			<div class="row">
-				<p class="col s12">
-
-
-					<?php
-						if(isset($_GET["log"]) == 1){
-							echo "Error";
-						}
-
-					?>
-				</p>
-			</div>
-		</form>
 	</div>
 </main>
-</body>
-		<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
+</body>	
+	<script language="javascript" type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/my.js"></script>
+	<script>
+					$( "#submit" ).click(function() {
+							$("#pre-loader").load('php/preloader.php');
+							window.setTimeout(do_login, 200);
+					});
+			
+
+
+	</script>
 </html>

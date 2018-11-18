@@ -56,8 +56,7 @@
 			$("#icon"+id).text("done");
 		}
 		function set_modal_id(id){
-			var obj = document.getElementById("reset_btn");
-			obj.onclick = function do_reset();
+			$(".prrs").attr("id",id);
 		}
 	
 </script>

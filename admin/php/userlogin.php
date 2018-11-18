@@ -26,16 +26,14 @@
 			$_SESSION['id'] = $dbusr["id"];
 			$_SESSION['gruppe'] = $dbusr["Gruppe"];
 			
-			
-		header("Location: ../admin.php");
-			
-			
+			echo "ok";
+					
 	}
 	else{ 
-		header("Location: ../login.php?log=1");
 		
 		session_start();
 		$_SESSION['vali'] = 0;
+		echo "error";
 	}
 
 ?>

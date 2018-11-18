@@ -35,7 +35,7 @@
 						<i class="material-icons" onClick="do_delete(<?php echo $row["id"]; ?>)">delete</i>
 						<i class="material-icons" id="icon<?php echo $row["id"]; ?>" onClick="edit(<?php echo $row["id"]; ?>)">create</i>
 						<?php if($row["id"] == $id || $gp = "Lehrer"){ ?>
-						<span data-target="modal2" id="pw<?php echo $row["id"]; ?>" class="modal-trigger tooltipped" style="width: 10%;" data-position="right" data-tooltip="Reset Password" onClick="set_modal_id(<?php echo $row["id"]; ?>)"><i class="material-icons">lock</i></span>
+						<span data-target="modal2" class="modal-trigger tooltipped" style="width: 10%;" data-position="right" data-tooltip="Reset Password" onClick="set_modal_id(<?php echo $row["id"]; ?>)"><i class="material-icons">lock</i></span>
 						<?php } ?>
 				</tr>
 				<?php } } ?>
