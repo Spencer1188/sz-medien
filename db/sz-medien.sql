@@ -1,7 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
---
 -- Host: 127.0.0.1
 -- Erstellungszeit: 17. Nov 2018 um 10:57
 -- Server-Version: 10.1.35-MariaDB
@@ -18,25 +17,26 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+
 -- Datenbank: `sz-medien`
---
-create database sz-medien if not exists;
+
+
+-- CREATE DATABASE IF NOT EXISTS sz-medien;
 
 -- --------------------------------------------------------
 
---
+
 -- Tabellenstruktur für Tabelle `bilder`
---
+
 
 CREATE TABLE `bilder` (
   `id` int(11) NOT NULL,
   `link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
+
 -- Daten für Tabelle `bilder`
---
+
 
 INSERT INTO `bilder` (`id`, `link`) VALUES
 (1, 'images/cam_pics/pic_osmo1.jpg'),
@@ -46,9 +46,9 @@ INSERT INTO `bilder` (`id`, `link`) VALUES
 
 -- --------------------------------------------------------
 
---
+
 -- Tabellenstruktur für Tabelle `cameras`
---
+
 
 CREATE TABLE `cameras` (
   `id` int(11) NOT NULL,
@@ -67,9 +67,9 @@ CREATE TABLE `cameras` (
   `videolink` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
+
 -- Daten für Tabelle `cameras`
---
+
 
 INSERT INTO `cameras` (`id`, `name`, `beschreibung`, `marke`, `akkulaufzeit`, `Kameratyp`, `Auflösung`, `Verschlusszeiten`, `ISO`, `Gewicht`, `Größe`, `Monitor`, `bildlink`, `videolink`) VALUES
 (1, 'DJI Osmo', 'Test Beschreibung', 'DJI', 0, 0, 0, 0, 0, 0, 0, 0, 'images/main-bild/test1.jpg', 'images/videos/1/test1.mp4'),
@@ -82,9 +82,9 @@ INSERT INTO `cameras` (`id`, `name`, `beschreibung`, `marke`, `akkulaufzeit`, `K
 
 -- --------------------------------------------------------
 
---
+
 -- Tabellenstruktur für Tabelle `user`
---
+
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
@@ -92,18 +92,18 @@ CREATE TABLE `user` (
   `pw` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
+
 -- Daten für Tabelle `user`
---
+
 
 INSERT INTO `user` (`id`, `name`, `pw`) VALUES
 (1, 'Max', '2ec142711dc3799280b5c8747c8020a1fce3d172ab760256ffd74032c4c17d11');
 
 -- --------------------------------------------------------
 
---
+
 -- Tabellenstruktur für Tabelle `zusatz`
---
+
 
 CREATE TABLE `zusatz` (
   `camera_id` int(11) NOT NULL,
@@ -111,63 +111,63 @@ CREATE TABLE `zusatz` (
   `Beschreibung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Indizes der exportierten Tabellen
---
 
---
+-- Indizes der exportierten Tabellen
+
+
+
 -- Indizes für die Tabelle `bilder`
---
+
 ALTER TABLE `bilder`
   ADD KEY `id` (`id`);
 
---
+
 -- Indizes für die Tabelle `cameras`
---
+
 ALTER TABLE `cameras`
   ADD PRIMARY KEY (`id`);
 
---
+
 -- Indizes für die Tabelle `user`
---
+
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
---
+
 -- Indizes für die Tabelle `zusatz`
---
+
 ALTER TABLE `zusatz`
   ADD KEY `fk_zusatz_cameras` (`camera_id`);
 
---
--- AUTO_INCREMENT für exportierte Tabellen
---
 
---
+-- AUTO_INCREMENT für exportierte Tabellen
+
+
+
 -- AUTO_INCREMENT für Tabelle `cameras`
---
+
 ALTER TABLE `cameras`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
+
 -- AUTO_INCREMENT für Tabelle `user`
---
+
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- Constraints der exportierten Tabellen
---
 
---
+-- Constraints der exportierten Tabellen
+
+
+
 -- Constraints der Tabelle `bilder`
---
+
 ALTER TABLE `bilder`
   ADD CONSTRAINT `bilder_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cameras` (`id`);
 
---
+
 -- Constraints der Tabelle `zusatz`
---
+
 ALTER TABLE `zusatz`
   ADD CONSTRAINT `fk_zusatz_cameras` FOREIGN KEY (`camera_id`) REFERENCES `cameras` (`id`);
 COMMIT;

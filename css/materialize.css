@@ -3436,6 +3436,7 @@ table span.badge {
   -webkit-font-feature-settings: 'liga';
      -moz-font-feature-settings: 'liga';
           font-feature-settings: 'liga';
+	cursor: pointer;
 }
 
 .container {
@@ -5600,7 +5601,7 @@ button.btn-floating {
 
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #26a69a;
+  color: #212121;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -6602,6 +6603,10 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   color: #42a5f5;
 }
 
+.icon-ac{
+	color: #42a5f5 !important;
+}
+
 .input-field .prefix ~ input,
 .input-field .prefix ~ textarea,
 .input-field .prefix ~ label,
@@ -7204,7 +7209,7 @@ select {
 }
 
 .select-wrapper input.select-dropdown:focus {
-  border-bottom: 1px solid #26a69a;
+  border-bottom: 1px solid #212121 ;
 }
 
 .select-wrapper .caret {
@@ -9089,6 +9094,16 @@ input[type=range]::-ms-thumb {
   .timepicker-text-container {
     top: 32%;
   }
+	
+	  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
   .timepicker-display-am-pm {
     position: relative;
     right: auto;
@@ -9102,3 +9117,23 @@ input[type=range]::-ms-thumb {
 	padding: 0px;
 	margin: 
 }
+
+.logo-img {
+	width: 30%;
+}
+
+@media only screen and (max-width: 400px) {
+	.logo-img{
+		padding-top: 10px;
+			width: 60%;
+		}
+	}
+
+@media only screen and (max-width: 900px) {
+	.logo-img{
+		padding-top: 10px;
+			width: 40%;
+		}
+	}
+
+
