@@ -10,29 +10,33 @@
 <head>
 <meta charset="utf-8">
 <title>Unbenanntes Dokument</title>
-	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="../css/materialize.css" type="text/css" rel="stylesheet">
-	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
-	<script language="javascript" type="text/javascript" src="js/admin_tools.js"></script>
+	<?php include "admin_header.php" ?>
 </head>
 <body>
 	
 	<!-- Navbar -->
-			  <nav>
-				<div class="nav-wrapper blue lighten-2">
-					<a class="brand-logo center"><img src="../images/logo/Unbenannt-2.png" alt="logo" width="30%"></img></a>
-					<ul style="margin-left: 20px;">
-				  		<li>Admin Page</li>	
-				  	</ul>
-				</div>
-			  </nav>
-	
+<header>
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a href="user.php">Benutzer</a></li>
+	  <li><a href="admin.php">Kameras</a></li>
+	</ul>
+  <nav>
+    <div class="nav-wrapper blue lighten-2">
+      <a href="#" class="brand-logo center hide-on-small-and-down"><img src="../images/logo/Unbenannt-2.png" alt="logo" class="responsive-img logo-img"></img></a>
+      <ul id="nav-mobile" class="left">
+        <li style="margin-left: 20px; margin-right: 10px;"><b>Admin Page</b></li>
+		<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Verwaltung<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
 	<div class="container">
 		<div class="row col s12 center">
 			<h4>Alle Kameras</h4>
 		</div>
 		<div class="row center">
-		<table class="responsive-table striped highlight col s12">
+		<table class="striped highlight col s12">
         <thead>
           <tr>
               <th>Name</th>
@@ -54,14 +58,24 @@
       </table>
 	</div>
 	</div>
-	<script>
+	</main>
+	<?php include "../footer.php" ?>
+	<?php }else{ echo "Youre not logged in.";} ?>
+	
+</body>
+	<script language="javascript" type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/my.js"></script>
+		<script>
 	
 		function link_tools(id){
-	window.location = "admin-info.php?id=" + id;
+			window.location = "admin-info.php?id=" + id;
+		}
+		
+		$(document).ready(function() { 
+			$(".dropdown-trigger").dropdown();
+		});
 
-}
 	
 	</script>
-	<?php }else{ echo "Youre not logged in.";} ?>
-</body>
 </html>

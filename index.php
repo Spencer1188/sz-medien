@@ -1,16 +1,9 @@
-	<!-- Datenbank einbindung -->
-<?php include "php/dbconfig.php"; 
-	$select_cam = "SELECT * FROM cameras";
-	$result_cam = $conn->query($select_cam);
-?>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 	<title>SZ-Medien</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="css/materialize.css" type="text/css" rel="stylesheet">
+	<?php include "main_header.php" ?>
 </head>
 <body>
 	
@@ -27,10 +20,19 @@
 	<div class="container">
 		<div class="section">
 			<div class="row blue-grey lighten-5">
-				<div class="col l3 label-icon" style="padding: 20px;">
+				<div class="col s12 m4 l3 label-icon small-center" style="padding: 20px;">
 					<i class="material-icons small icon-ac" onClick="change(1)" id = "1">border_all</i>
 					<i class="material-icons small" onClick="change(2)" id = "2">dehaze</i>
 					<i class="material-icons small" onClick="change(3)" id = "3">format_list_bulleted</i>
+				</div>
+				<div class="col s12 m6 l3 right">
+					  <form>
+						<div class="input-field" id="in-search">
+						  <input id="search" class="autocomplete" type="search" required style="padding-left: 30px; width: 85%;">
+						  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+						  <i class="material-icons" style="padding-top: 10px;" id="close-search">close</i>
+						</div>
+					  </form>
 				</div>
 			</div>
 			
@@ -66,19 +68,52 @@
 				$( "#1" ).addClass( "icon-ac" );
 				$( "#2" ).removeClass( "icon-ac" );
 				$( "#3" ).removeClass( "icon-ac" );
+				$( "#search" ).val("");
 			   }
 			if(id == 2){
 				$("#display-kach").load('php/table.php');
 				$( "#2" ).addClass( "icon-ac" );
 				$( "#1" ).removeClass( "icon-ac" );
 				$( "#3" ).removeClass( "icon-ac" );
+				$( "#search" ).val("");
 			}
 			if(id == 3){
 				$("#display-kach").load('php/detail.php');
 				$( "#3" ).addClass( "icon-ac" );
 				$( "#2" ).removeClass( "icon-ac" );
 				$( "#1" ).removeClass( "icon-ac" );
+				$( "#search" ).val("");
 			   }
 		}
+		function search(){
+			var val = $( "#search" ).val();
+			$("#display-kach").load('php/kacheln.php?sea=' + val);
+			//window.location.href = 'php/kacheln.php?sea=' + val;
+				$( "#3" ).removeClass( "icon-ac" );
+				$( "#2" ).removeClass( "icon-ac" );
+				$( "#1" ).removeClass( "icon-ac" );
+		}
+		
+		$( "#search" ).change( search );
+		
+		$( "#close-search").click( close );
+		
+		function close(){
+			$( "#search" ).val("");
+			$("#display-kach").load('php/kacheln.php');
+		}
+		
+		  $(document).ready(function(){
+			$('input.autocomplete').autocomplete({
+			  data: {
+				"Apple": null,
+				"Microsoft": null,
+				"Google": 'https://placehold.it/250x250'
+			  },
+			});
+		  });
+		
+		
+
 	</script>
 </html>

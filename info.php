@@ -14,12 +14,11 @@
 <head>
 <meta charset="utf-8">
 <title>Unbenanntes Dokument</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="css/materialize.css" type="text/css" rel="stylesheet">
-	<script language="javascript" type="text/javascript" src="js/materialize.js"></script>
+	<?php include "main_header.php" ?>
 </head>
 <body>
 		<!-- Navbar -->
+	<header>
 			  <nav>
 				<div class="nav-wrapper blue lighten-2">
 					<a class="brand-logo"><img src="images/logo/Unbenannt-2.png" alt="logo" width="30%"></img></a>
@@ -28,7 +27,8 @@
 					</ul>
 				</div>
 			</nav>
-
+	</header>
+	<main>
 <div class="container">
 	<div class="section">
 		<div class="row">
@@ -73,13 +73,17 @@
 	</div>
 </div>
 	<?php } ?>
+	</main>
+	<?php include "footer.php"; ?>
+		
+</body>
+	<script language="javascript" type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
+	<script language="javascript" type="text/javascript" src="../js/my.js"></script>
 	<script>
 	  document.addEventListener('DOMContentLoaded', function() {
 		var elems = document.querySelectorAll('.carousel');
 		var instances = M.Carousel.init(elems,200);
 	  });
 	</script>
-	
-	<?php include "footer.php"; ?>
-</body>
 </html>

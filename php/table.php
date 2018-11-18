@@ -4,7 +4,7 @@
 		$result_cam = $conn->query($select_cam);
 ?>
 
-<table class="responsive-table striped highlight col s12" style="border: 1px solid #000000">
+<table class="responsive-table striped highlight col s12">
         <thead>
           <tr>
               <th>Name</th>

@@ -23,6 +23,8 @@
 			session_start();
 			$_SESSION['vali'] = 1;
 			$_SESSION['username'] = $username;
+			$_SESSION['id'] = $dbusr["id"];
+			$_SESSION['gruppe'] = $dbusr["Gruppe"];
 			
 			
 		header("Location: ../admin.php");

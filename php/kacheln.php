@@ -1,7 +1,13 @@
 
 <?php include "dbconfig.php"; 
-	$select_cam = "SELECT * FROM cameras";
-	$result_cam = $conn->query($select_cam);
+	if(isset($_GET["sea"])){
+		$search = $_GET["sea"];
+		$select_cam = "SELECT * FROM `cameras` WHERE name like '%$search%'";
+		$result_cam = $conn->query($select_cam);
+	}else{
+		$select_cam = "SELECT * FROM cameras";
+		$result_cam = $conn->query($select_cam);	
+	}
 ?>
 
 <?php 
