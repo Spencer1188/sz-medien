@@ -3,7 +3,7 @@
 		!mysqli_set_charset($link, "utf8");
 		session_start();
 		$id = $_SESSION["id"];
-		$gp = $_SESSION["gruppe"];	
+		$gp = $_SESSION["gruppe"];
 		$select_usr = "SELECT * FROM user";
 		$result_usr = $conn->query($select_usr);	
 
@@ -30,16 +30,20 @@
 				?>
 				<tr id="<?php echo $row["id"]; ?>">
 					<td><?php echo $row["name"]; ?></td>
-					<td><?php echo $row["Gruppe"]; ?></td>
+					<td><?php echo $row["gruppe"]; ?></td>
+					
+						
 					<td class="center">
-						<i class="material-icons" onClick="do_delete(<?php echo $row["id"]; ?>)">delete</i>
+						<?php if($gp == "Lehrer"){ ?>
+						<i class="material-icons" onClick="do_delete(<?php echo $row["id"]; ?>)">delete</i><?php } ?>
+						
+						<?php if($row["id"] == $id || $gp== "Lehrer"){ ?>
 						<i class="material-icons" id="icon<?php echo $row["id"]; ?>" onClick="edit(<?php echo $row["id"]; ?>)">create</i>
-						<?php if($row["id"] == $id || $gp = "Lehrer"){ ?>
 						<span data-target="modal2" class="modal-trigger tooltipped" style="width: 10%;" data-position="right" data-tooltip="Reset Password" onClick="set_modal_id(<?php echo $row["id"]; ?>)"><i class="material-icons">lock</i></span>
 						<?php } ?>
 				</tr>
 				<?php } } ?>
-				
+				<?php if($row["id"] == $id || $gp == "Lehrer"){ ?>
 				<tr >
 					<td colspan="3" class="" style="cursor: default">
 						<div class="center">
@@ -47,6 +51,7 @@
 						</div>
 					</td>
 				</tr>
+				<?php } ?>
 			</tbody>
 		  </table>
 		</div>

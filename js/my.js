@@ -9,6 +9,7 @@
 			$('select').formSelect();
 		  });
 
+
 	function do_insert()
 		{
 		 var usr=$("#usr").val();
@@ -65,7 +66,7 @@
 			
 		 var usr=$("#usredit").val();
 		 var group=$("#grpedit").val();
-		
+			
 		 if(usr!="" && group!="")
 		 {
 			  $.ajax

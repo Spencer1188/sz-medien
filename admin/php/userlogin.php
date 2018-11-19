@@ -24,7 +24,7 @@
 			$_SESSION['vali'] = 1;
 			$_SESSION['username'] = $username;
 			$_SESSION['id'] = $dbusr["id"];
-			$_SESSION['gruppe'] = $dbusr["Gruppe"];
+			$_SESSION['gruppe'] = $dbusr["gruppe"];
 			
 			echo "ok";
 					

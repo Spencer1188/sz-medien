@@ -27,6 +27,9 @@
         <li style="margin-left: 20px; margin-right: 10px;"><b>Admin Page</b></li>
 		<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Verwaltung<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
+		  <ul class="right">
+		 	 <li class="right"><a href="php/logout.php"><i class="material-icons right">exit_to_app</i>Logout</a></li>
+		  </ul>
     </div>
   </nav>
 </header>

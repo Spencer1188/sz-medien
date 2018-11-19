@@ -47,6 +47,8 @@
 
 </body>
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script language="javascript" type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="js/materialize.js"></script>
 	<script language="javascript" type="text/javascript" src="js/my.js"></script>
@@ -103,15 +105,17 @@
 			$("#display-kach").load('php/kacheln.php');
 		}
 		
-		  $(document).ready(function(){
-			$('input.autocomplete').autocomplete({
-			  data: {
-				"Apple": null,
-				"Microsoft": null,
-				"Google": 'https://placehold.it/250x250'
-			  },
-			});
-		  });
+  $(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+		source: "php/search",
+      data: {
+        "Apple": null,
+        "Microsoft": null,
+        "Google": 'https://placehold.it/250x250'
+      },
+    });
+  });
+        
 		
 		
 

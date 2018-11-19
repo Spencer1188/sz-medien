@@ -27,9 +27,9 @@
 			<li style="margin-left: 20px; margin-right: 10px;"><b>Admin Page</b></li>
 			<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Verwaltung<i class="material-icons right">arrow_drop_down</i></a></li>
 		  </ul>
-		  <uL class="right">
+		  <ul class="right">
 		 	 <li class="right"><a href="php/logout.php"><i class="material-icons right">exit_to_app</i>Logout</a></li>
-		  </uL>
+		  </ul>
 		</div>
 	  </nav>
 	</header>
@@ -54,10 +54,12 @@
 		function edit(id){
 			$("#"+id).load('php/get_user_edit.php?id=' + id);
 			$("#icon"+id).text("done");
+			$('select').formSelect();
 		}
 		function set_modal_id(id){
 			$(".prrs").attr("id",id);
 		}
-	
+
+
 </script>
 </html>
