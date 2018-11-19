@@ -13,21 +13,25 @@
 
 					<td><input type="text" value="<?php echo $row["name"]; ?>" id="usredit"></td>
 					<td> 
-						<?php if($gp == "Lehrer"){ ?>
+					<?php if($gp == "Lehrer"){ ?>
 							<select style="display: block" id="grpedit">
-							  <option value="<?php echo $row["gruppe"]; ?>" selected><?php echo $row["gruppe"]; ?></option>
 						<?php 
 							if ($result_op->num_rows > 0) {
 							// output data of each row
-							while($row1 = $result_op->fetch_assoc()) {
-						?>
-							 <option value="<?php echo $row1["name"]; ?>"><?php echo $row1["name"]; ?></option>	
-
-						<?php } ?>
+							while($row1 = $result_op->fetch_assoc()) { ?>	
+								<?php if($row1["name"] == $gp){ ?>
+								 <option value="<?php echo $row1["name"]; ?>" selected><?php echo $row1["name"]; ?></option>	
+								<?php }else{ ?>
+								<option value="<?php echo $row1["name"]; ?>" selected><?php echo $row1["name"]; ?></option>	
+								<?php }?>
+							<?php } ?>
 						</select>
-				<?php } }else{?> <input id="grpedit" value="<?php echo $row["gruppe"]; ?>" disabled> </input><?php }?>
+				<?php 	} 
+					}else{?>
+						<input id="grpedit" value="<?php echo $row["gruppe"]; ?>" disabled> </input>
+					<?php }?>
 							
-						</td>
+					</td>
 					<td class="center">
 						<i class="material-icons " id="icon<?php echo $row["id"]; ?>" onClick="do_edit(<?php echo $row["id"]; ?>)">done</i>
 					</td>

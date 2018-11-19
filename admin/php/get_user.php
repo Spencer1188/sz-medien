@@ -1,6 +1,5 @@
 	<?php
 		include "../../php/dbconfig.php"; 
-		!mysqli_set_charset($link, "utf8");
 		session_start();
 		$id = $_SESSION["id"];
 		$gp = $_SESSION["gruppe"];
