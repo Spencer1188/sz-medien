@@ -1,9 +1,6 @@
 <?php 
 	session_start();
 	if($_SESSION['vali'] == 1){
-		include "../php/dbconfig.php"; 
-		$select_cam = "SELECT * FROM cameras";
-		$result_cam = $conn->query($select_cam);
 ?>
 <!doctype html>
 <html>
@@ -34,32 +31,8 @@
   </nav>
 </header>
 <main>
-	<div class="container">
-		<div class="row col s12 center">
-			<h4>Alle Kameras</h4>
-		</div>
-		<div class="row center">
-		<table class="striped highlight col s12">
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Marke</th>
-          </tr>
-        </thead>
-        <tbody>
-			<?php 
-				if ($result_cam->num_rows > 0) {
-				// output data of each row
-				while($row = $result_cam->fetch_assoc()) {
-			?>
-			<tr onClick="link_tools(<?php echo $row["id"] ?>)">
-				<td><?php echo $row["name"]; ?></td>
-				<td><?php echo $row["marke"]; ?></td>
-			</tr>
-			<?php } } ?>
-        </tbody>
-      </table>
-	</div>
+	<div class="container" id="show_admin">
+
 	</div>
 	</main>
 	<?php include "../footer.php" ?>
@@ -77,8 +50,35 @@
 		
 		$(document).ready(function() { 
 			$(".dropdown-trigger").dropdown();
+			 $("#show_admin").load('php/get_admin_page.php');
 		});
-
+			
+		function add_cam(){
+			window.location.href = "add_cam.php";
+		}
+			
+		function do_delete_cam(id){
+		
+		 $.ajax
+			  ({
+			  type:'post',
+			  url:'php/cam_delete.php',
+			  data:{
+				  id: id
+			  },
+			  success:function(data) {
+				  if(data == "ok"){
+					  $("#show_admin").load('php/get_admin_page.php');
+					 M.toast({html: 'Camera gelöscht!'})
+					 }else{
+						 alert(data);
+					 }
+			  },			
+			  error:function() {
+				  M.toast({html: 'Camera löschen fehlgeschlagen!'})
+			  }
+			  });
+	}
 	
 	</script>
 </html>

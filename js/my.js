@@ -128,33 +128,55 @@
 
 		}
 
-		function do_login()
+
+	function do_insert_cam()
 		{
-		 var usr=$("#usrname").val();
-		 var pass=$("#password").val();
-		
-		 if(usr!="" && pass!="" )
+			
+		 var ivnr = $("#inr").val();
+		 var name = $("#name").val();
+		 var marke = $("#marke").val();
+		 var bes = $("#beschreibung").val();
+		 var typ = $("#typ").val();
+		 var afl = $("#afl").val();
+		 var akl = $("#akl").val();
+		 var spmed = $("#spmed").val();
+		 var vsz = $("#vsz").val();
+		 var iso = $("#iso").val();
+		 var gewicht = $("#gewicht").val();
+		 var dim = $("#dim").val();
+			
+		if(ivnr!="" && name!="")
 		 {
 			  $.ajax
 			  ({
 			  type:'post',
-			  url:'php/userlogin.php',
+			  url:'php/cam_insert.php',
 			  data:{
-			   username:usr,
-			   pw:pass
+				  ivnr: ivnr,
+				  name: name,
+				  marke: marke,
+				  bes: bes,
+				  typ:typ,
+				  afl: afl,
+				  akl: akl,
+				  spmed: spmed,
+				  vsz:vsz,
+				  iso:iso,
+				  gw:gewicht,
+				  dim: dim
 			  },
 			  success:function(data) {
-				  if(data == "error"){
-					M.toast({html: 'Fehler beim Login!'})
-				  }else{
-					 window.location.href = "admin.php";
-				  }
+				  if(data == "ok"){
+				 	$("#pre-loader").load('php/get_pic_ins.php?id=100');
+					  }else{
+						  alert(data);
+					  }
 			  },			
 			  error:function() {
-				  M.toast({html: 'Fehler beim Login!'})
+				  M.toast({html: 'Cam erstellen fehlgeschlagen!'})
 			  }
 			  });
-		 }else {
+		 } else {
 		  alert("Please Fill All The Details");
 		 } 
 

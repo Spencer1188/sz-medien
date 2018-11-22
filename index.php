@@ -53,10 +53,6 @@
 	<script language="javascript" type="text/javascript" src="js/materialize.js"></script>
 	<script language="javascript" type="text/javascript" src="js/my.js"></script>
 	<script>
-		  document.addEventListener('DOMContentLoaded', function() {
-			var elems = document.querySelectorAll('select');
-			var instances = M.FormSelect.init(elems);
-		  });
 		
 		$(document).ready(function() { 
 			$("#display-kach").load('php/kacheln.php');
@@ -96,7 +92,7 @@
 				$( "#1" ).removeClass( "icon-ac" );
 		}
 		
-		$( "#search" ).change( search );
+		$( "#search" ).keyup( search );
 		
 		$( "#close-search").click( close );
 		
@@ -105,19 +101,16 @@
 			$("#display-kach").load('php/kacheln.php');
 		}
 		
-  $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-		source: "php/search",
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-      },
-    });
-  });
+	  $(document).ready(function(){
+		$('input.autocomplete').autocomplete({
+			source: "php/search.php",
+		  data: {
+			"Apple": null,
+			"Microsoft": null,
+			"Google": 'https://placehold.it/250x250'
+		  },
+		});
+	  });
         
-		
-		
-
 	</script>
 </html>

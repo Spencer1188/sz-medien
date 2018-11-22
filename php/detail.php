@@ -1,6 +1,6 @@
 <?php
 		include "dbconfig.php"; 
-		$select_cam = "SELECT * FROM cameras";
+		$select_cam = "SELECT * FROM cameras order by marke";
 		$result_cam = $conn->query($select_cam);
 ?>
 

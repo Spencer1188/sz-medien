@@ -3,10 +3,13 @@
 	$id = $_GET["id"];
 	
 	include "php/dbconfig.php";
+	$sql_dt = "SELECT * FROM `datenblatt` WHERE id=$id";
 	$sql_bilder = "SELECT distinct * FROM `bilder` WHERE id = $id";
+	$result_cam = $link->query("SELECT * FROM cameras where id=$id");
+
 	$result_pic = $conn->query($sql_bilder);
-	$result = $link->query("SELECT * FROM cameras where id=$id");
-	$cam = $result->fetch_assoc();
+	$result_dt = $conn->query($sql_dt);
+	$cam = $result_cam->fetch_assoc();
 
 ?>
 <html>
@@ -29,27 +32,32 @@
 	</header>
 	<main>
 <div class="container">
-	<div class="section">
 		<div class="row">
 			<!--- Header Information -->
 			<div class="col s12 center">
 				<h2><?php echo $cam["name"] ?></h2>
 			</div>
 		</div>
-		
-		<div class="row fix-height-400" style="height: 300px;">
+		<div class="row fix-height-100">
 					<!-- Carousel -->
-		   <div class="col s12 l2 center" style="margin-top: -30px; padding: 10px;">
-			   <ul style="height: 200px;width: 100px;">
+		<div class="row col s12 l6">
+		   
+			<div class="center col s12" style="height: 200px; ">
+			
+				<img src="<?php echo $cam["bildlink"]; ?>" id="img" alt="Bild" width="40%">
+			
+			</div>	
+			<div class="col center-align s12 center" style="text-align: center;">
+				<center><ul style="height: 200px;">
 				<?php 
 					if ($result_pic->num_rows > 0 && $cam["bildlink"] != "") { ?>
-				<li class="fix-height-100 fix-width-100" onClick="change_image(20000)" href="#">
+				<li class="fix-width-100" onClick="change_image(20000)" href="#" style="float: left;">
 					<img src="<?php echo $cam["bildlink"] ?>" class="z-depth-1 hoverable" id="20000" width="50px" height="50px">
 			    </li>	
 				<?php	// output data of each row
 					while($row = $result_pic->fetch_assoc()) {
 				  ?>
-				<li class="fix-height-100 fix-width-100"  href="#" onClick="change_image(<?php echo $row["num"] ?>)">
+				<li class="fix-width-100"  href="#" style="float: left; margin-left: -45px;" onClick="change_image(<?php echo $row["num"] ?>)">
 					<img src="<?php echo $row["link"] ?>" class="z-depth-1 hoverable" id="<?php echo $row["num"] ?>" width="50px" height="50px">
 			    </li>	
 				<?php    
@@ -59,42 +67,51 @@
 				<li class="fix-height-100 fix-width-100"  href="#">
 					<img src="<?php echo $cam["bildlink"] ?>" class="z-depth-1 hoverable" id="" width="50px" height="50px">
 			    </li>		
-				
+				   </ul></center>
 				<?php }else{
 						echo "<p style='padding-top:100px;padding-left:200px'>Keine Bilder<p>"; 
 					}
 				?>
 				   </ul>
 			</div>	
-			<div class="center col s12 l5">
-			
-				<img src="<?php echo $cam["bildlink"]; ?>" id="img" alt="Bild" width="40%">
-			
-			</div>	
-			<div class=" col s12 l5">
-				 <ul class="collection with-header">
+			</div>
+			<div class=" col s12 l6">
+				 <ul class="collection with-header abs-responsive-50" style="margin-top: -20px">
 				  <li class="collection-header"><h4>Informationen</h4></li>
+				  <li class="collection-item">Inventar ID: <?php echo $cam["inr"] ?></li>
 				  <li class="collection-item">Marke: <?php echo $cam["marke"] ?></li>
 				  <li class="collection-item">Kameratyp: <?php echo $cam["Kameratyp"] ?></li>
-				  <li class="collection-item">Dimensionen: <?php echo $cam["Größe"] ?></li>
+				  <li class="collection-item">Dimensionen: <?php echo $cam["dim"] ?></li>
 				  <li class="collection-item">Gewicht: <?php echo $cam["Gewicht"] ?></li>
-				  <li class="collection-item">Auflösung <?php echo $cam["Auflösung"] ?></li>
+				  <li class="collection-item">Auflösung <?php echo $cam["afl"] ?></li>
+				  <li class="collection-item">Auflösung <?php echo $cam["iso"] ?></li>
+				  <li class="collection-item">Datenblatt/Anleitung:
+			<?php 
+					if ($result_dt->num_rows > 0) { 
+						while($row = $result_dt->fetch_assoc()) {
+			?>
+				<a href="<?php echo $row["pdf_link"]; ?>"><div class="" style="width: 300px"> 
+					<i class="material-icons inline-icon">picture_as_pdf</i>
+					<?php echo $row["filename"]; ?>
+				</div></a>
+			
+			<?php } }else{ echo "<br><b>Keine Datenblätter vorhanden!</b>"; }?>
 				</ul>
-			</div>	
 		</div>
 	</div>
 </div>
-	<?php if($cam["videolink"] != ""){?>
-<div class="container" style="margin-bottom: 50px;">
-	<div class="section">
-		<div class="row" style="width: 70%; padding: 0px;">
-				<video class="col s12 l12 z-depth-1" controls style="padding: 0px;">
-					<source src="<?php echo $cam["videolink"]; ?>" type="video/mp4">
-				</video>
+	
+<div class="container" style="margin-top: 190px;">
+		<div class="row" style="width: 70%;">
+			<?php if($cam["videolink"] != ""){?>
+			<video class="col s12 z-depth-1" controls style="padding: 0px;"d>
+				<source src="<?php echo $cam["videolink"]; ?>" type="video/mp4">
+			</video>
+			<?php } ?>
 		</div>
 	</div>
 </div>
-	<?php } ?>
+	
 	</main>
 	<?php include "footer.php"; ?>
 		

@@ -10,6 +10,6 @@
 		echo "Error deleting record: " . $conn->error;
 	}
 
-	header("Location: ../user.php?delete_ok=1");
+	header("Location: ../user.php");
 
 ?>
