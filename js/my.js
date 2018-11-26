@@ -167,7 +167,7 @@
 			  },
 			  success:function(data) {
 				  if(data == "ok"){
-				 	$("#pre-loader").load('php/get_pic_ins.php?id=100');
+				 	$("#pre-loader").load('php/get_pic_ins.php');
 					  }else{
 						  alert(data);
 					  }

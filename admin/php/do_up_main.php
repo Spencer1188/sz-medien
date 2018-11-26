@@ -1,5 +1,6 @@
 <?php
-$id_val = $_GET["id"];
+	session_start();	
+$id_val = $_SESSION["last_id"];
 $upload_folder = '../../images/main-bild/'; //Das Upload-Verzeichnis
 $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
 $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));

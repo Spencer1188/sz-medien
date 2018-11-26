@@ -1,7 +1,7 @@
 <?php 
-	include "../../php/dbconfig.php"; 
-	$id = $_GET["id"];
-
+	session_start();
+	include "../../php/dbconfig.php"; 	
+	$id = $_SESSION["last_id"];
 	$sql_bilder = "SELECT distinct * FROM `bilder` WHERE id = $id";
 	$result_pic = $conn->query($sql_bilder);
 	$result = $link->query("SELECT * FROM cameras where id=$id");
@@ -32,17 +32,18 @@
 							<div class="file-field input-field col s12 row">
 							  <div class="btn col s2">
 								<span>File</span>
-								<input type="file" name="datei" id="in_one">
+								  <input type="file" name="datei" id="in_main" style="width: 30%"></input>
 							  </div>
 							  <div class="file-path-wrapper col s8">
-								<input class="file-path validate" type="text" id="path">
+								<input class="file-path validate" type="text" id="path"></input>
 							  </div>
-							  <div class="col s2" style="margin-top: 10px;" id="upload_one">
+								
+						   </form>
+							  <div class="col s2" style="margin-top: 10px;" id="upload_one" onClick="do_up_main()">
 								<i class="material-icons">file_upload</i>
 							  </div>
 							</div>
 						</div>
-						   </form>
 					  	  </div>
 				  
 				  
@@ -82,7 +83,7 @@
 							  <div class="file-path-wrapper col s8">
 								<input class="file-path validate" type="text" id="path">
 							  </div>
-							  <div class="col s2" style="margin-top: 10px;" id="upload_one">
+							  <div class="col s2" style="margin-top: 10px;" id="upload_one" >
 								<i class="material-icons">file_upload</i>
 							  </div>
 							</div>
@@ -127,5 +128,5 @@
 							  </div>
 							</div>
 					  </form>
-
+				
 			</div>

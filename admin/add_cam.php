@@ -28,11 +28,13 @@
 	<script language="javascript" type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
 	<script language="javascript" type="text/javascript" src="../js/my.js"></script>
+	<script language="javascript" type="text/javascript" src="js/upload.js"></script>
+
 	<script>
 		
 		$(document).ready(function(){	 
 			$("#upload_one").addClass("hidden");
-			$("#pre-loader").load('php/get_cam_ins.php');
+			$("#pre-loader").load('php/get_pic_ins.php');
 		  });
 		
 		$( "#path" ).change(function() {
@@ -47,9 +49,27 @@
 			do_insert_cam();
 			$("#pre-loader").load('php/preloader.php');
 		}
-		
-
 	
-	</script>
+
+function do_up_main() {
+    var file_data = $('#in_main').prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('file', file_data);                            
+    $.ajax({
+        url: 'php/do_up_main.php', // point to server-side PHP script 
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                        
+        type: 'post',
+        success: function(php_script_response){
+            M.toast({html: "Erfolgreich hochgeladen!"})
+			$("#pre-loader").load('php/get_pic_ins.php');// display response from the PHP script, if any
+        }
+     });
+}
+
+</script>
 </body>
 </html>

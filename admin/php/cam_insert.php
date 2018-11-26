@@ -17,11 +17,14 @@
 
 	$ins = "INSERT INTO `cameras`(`inr`, `name`, `beschreibung`, `marke`, `akkulaufzeit`, `Kameratyp`, `afl`, `Verschlusszeiten`, `ISO`, `Gewicht`, `dim`) VALUES ('$ivnr','$name','$bes','$marke','$akl','$typ','$afl','$vsz','$iso','$gw','$dim')";
 
-if ($conn->query($ins) === TRUE) {
+if ($link->query($ins) === TRUE) {
     echo "ok";
 } else {
      echo "Error: " . $ins . "<br>" . $conn->error;
 }
+
+session_start();
+$_SESSION["last_id"] =  $link->insert_id;
 
 	
 ?>
