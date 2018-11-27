@@ -178,6 +178,7 @@
 			  });
 		 } else {
 		  alert("Please Fill All The Details");
+			 $("#pre-loader").load('php/get_cam_ins.php');
 		 } 
 
 		}

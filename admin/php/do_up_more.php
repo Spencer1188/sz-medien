@@ -1,6 +1,6 @@
 <?php
 session_start();	
-$id_val = $_SESSION["infid"];
+$id_val = $_SESSION["last_id"];
 
 $upload_folder = '../../images/cam_pics/'; //Das Upload-Verzeichnis
 $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);

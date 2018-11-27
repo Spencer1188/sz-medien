@@ -1,5 +1,6 @@
 <?php
-$id_val = $_GET["id"];
+	session_start();	
+$id_val = $_SESSION["infid"];
 $upload_folder = '../../images/main-bild/'; //Das Upload-Verzeichnis
 $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
 $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
@@ -40,7 +41,7 @@ if(file_exists($new_path)) { //Falls Datei existiert, hänge eine Zahl an den Da
  
 //Alles okay, verschiebe Datei an neuen Pfad
 move_uploaded_file($_FILES['file']['tmp_name'], $new_path);
-echo 'Bild erfolgreich hochgeladen: <a href="'.$new_path.'">'.$new_path.'</a>';
+
 
 // Link in Datenbank schreiben
 
@@ -49,12 +50,12 @@ include "../../php/dbconfig.php";
 $sql = "UPDATE `cameras` SET `bildlink`='images/main-bild/" . $filename.'.'.$extension ."' WHERE id = $id_val";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
+	echo "ok";
 } else {
     echo "Error updating record: " . $conn->error;
+	echo "error";
 }
 
-echo $id;
-header("LOCATION: ../admin-info.php?id=$id_val");
+
 
 ?>

@@ -13,10 +13,15 @@
 					  <h5 class="center">Main-Bild</h5>
 				  <div class="col s12 center">
 					  <div class="row" style="height: 212px;">
-					  <?php if($cam["bildlink"] != ""){ ?>
-							<div class="col s12">
-								  <img src="../<?php echo $cam["bildlink"] ?>" width="40%">
-							</div>
+					  <?php if($cam["bildlink"] != "0"){ ?>
+						<div class="col s6 m4 l3">
+						 <div class="card">
+								<div class="card-image">
+								  <img src="../<?php echo $cam["bildlink"] ?>" class="responsive-img">
+								  <a class="btn-floating halfway-fab waves-effect waves-light" onClick="delete_main(<?php echo $id; ?>)"><i class="material-icons">delete</i></a>
+								</div>
+						 </div>
+						</div>
 					  <?php }else{ ?>
 						<div class="col s6 m4 l3 center">
 						 <div class="center">
@@ -28,17 +33,15 @@
 				  </div>
 					  <!-- upload Main-Bil -->
 					  	  <div class="col s12 center">
-						   <form action="php/up_one.php?id=<?php echo $cam["id"] ?>" method="post" enctype="multipart/form-data">
 							<div class="file-field input-field col s12 row">
 							  <div class="btn col s2">
 								<span>File</span>
 								  <input type="file" name="datei" id="in_main" style="width: 30%"></input>
 							  </div>
 							  <div class="file-path-wrapper col s8">
-								<input class="file-path validate" type="text" id="path"></input>
+								<input class="file-path validate" type="text" id="path_main"></input>
 							  </div>
 								
-						   </form>
 							  <div class="col s2" style="margin-top: 10px;" id="upload_one" onClick="do_up_main()">
 								<i class="material-icons">file_upload</i>
 							  </div>
@@ -59,6 +62,7 @@
 						 <div class="card">
 								<div class="card-image">
 								  <img src="../<?php echo $row["link"] ?>" class="responsive-img">
+									<a class="btn-floating halfway-fab waves-effect waves-light" onClick="delete_more(<?php echo $row["num"]; ?>);"><i class="material-icons">delete</i></a>
 								</div>
 						 </div>
 						</div>
@@ -73,22 +77,21 @@
 						</div>
 				<?php } ?>
 					  </div>
-					  <div class="row">
-					   <form action="#">
+					  	  <div class="col s12 center">
 							<div class="file-field input-field col s12 row">
 							  <div class="btn col s2">
 								<span>File</span>
-								<input type="file" name="datei" id="in_one" multiple>
+								  <input type="file" name="datei" id="in_more" style="width: 30%"></input>
 							  </div>
 							  <div class="file-path-wrapper col s8">
-								<input class="file-path validate" type="text" id="path">
+								<input class="file-path validate" type="text" id="path_more" multiple="multiple"></input>
 							  </div>
-							  <div class="col s2" style="margin-top: 10px;" id="upload_one" >
+								
+							  <div class="col s2" style="margin-top: 10px;" id="upload_one" onClick="do_up_more()">
 								<i class="material-icons">file_upload</i>
 							  </div>
 							</div>
-					  </form>
-					  </div>
+						</div>
 				  </div>
 			  </div>
 <br><br><hr><br><br>
@@ -130,3 +133,9 @@
 					  </form>
 				
 			</div>
+<br><br>
+		<div class="container">
+			<div class="row">
+				<button class="center btn">Fertig</button>
+			</div>
+		</div>

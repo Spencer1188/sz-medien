@@ -15,7 +15,7 @@
 	$gw = $_POST["gw"];
 	$dim = $_POST["dim"];
 
-	$ins = "INSERT INTO `cameras`(`inr`, `name`, `beschreibung`, `marke`, `akkulaufzeit`, `Kameratyp`, `afl`, `Verschlusszeiten`, `ISO`, `Gewicht`, `dim`) VALUES ('$ivnr','$name','$bes','$marke','$akl','$typ','$afl','$vsz','$iso','$gw','$dim')";
+	$ins = "INSERT INTO `cameras`(`inr`, `name`, `beschreibung`, `marke`, `akkulaufzeit`, `Kameratyp`, `afl`, `Verschlusszeiten`, `iso`, `Gewicht`, `dim`) VALUES ('$ivnr','$name','$bes','$marke','$akl','$typ','$afl','$vsz','$iso','$gw','$dim')";
 
 if ($link->query($ins) === TRUE) {
     echo "ok";

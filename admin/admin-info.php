@@ -1,7 +1,8 @@
 <?php 
 	include "../php/dbconfig.php"; 
 	$id = $_GET["id"];
-
+	session_start();
+	$_SESSION["infid"] = $id;
 	$sql_bilder = "SELECT distinct * FROM `bilder` WHERE id = $id";
 	$result_pic = $conn->query($sql_bilder);
 	$result = $link->query("SELECT * FROM cameras where id=$id");
@@ -83,7 +84,7 @@
 					  <label for="vsz">Verschlusszeit</label>
 					</div>
 					<div class="input-field col s12 m6 l6">
-					  <input placeholder="" id="iso" type="text" class="validate" value="<?php echo $cam["ISO"]; ?>" required>
+					  <input placeholder="" id="iso" type="text" class="validate" value="<?php echo $cam["iso"]; ?>" required>
 					  <label for="iso">ISO</label>
 					</div>
 				  </div>
@@ -110,89 +111,16 @@
       </div>
 
 	
-		<div class="container">
-			<div class="row">
-				
-			  <div class="row col s12 l6">
-					  <h5 class="center">Main-Bild</h5>
-				  <div class="col s12 center">
-						  <div class="row" style="height: 200px;">
-							<div class="col s12">
-								  <img src="../<?php echo $cam["bildlink"] ?>" width="40%">
-							</div>
-						   </div>
-				  </div>
-					  <!-- upload Main-Bil -->
-					  	  <div class="col s12 center">
-						   <form action="php/up_one.php?id=<?php echo $cam["id"] ?>" method="post" enctype="multipart/form-data">
-							<div class="file-field input-field col s12 row">
-							  <div class="btn col s2">
-								<span>File</span>
-								<input type="file" name="datei" id="in_one">
-							  </div>
-							  <div class="file-path-wrapper col s8">
-								<input class="file-path validate" type="text" id="path">
-							  </div>
-							  <div class="col s2" style="margin-top: 10px;" id="upload_one">
-								<i class="material-icons">file_upload</i>
-							  </div>
-							</div>
-						</div>
-						   </form>
-					  	  </div>
-				  
-				  
-				  <div class="col s12 m6 l6">
-					  <h5 class="center">Weitere-Bilder</h5>
-					  <div class="row" style="height: 212px;">
-				<?php 
-					if ($result_pic->num_rows > 0) {
-					// output data of each row
-					while($row = $result_pic->fetch_assoc()) {
-				  ?>
-						<div class="col s6 m4 l3">
-						 <div class="card">
-								<div class="card-image">
-								  <img src="../<?php echo $row["link"] ?>" class="responsive-img">
-								</div>
-						 </div>
-						</div>
-				<?php    
-					}
-
-				} else {
-
-					echo "<p style='padding-top:100px;padding-left:200px'>Keine Bilder<p>"; 
-					}
-				?>
-					  </div>
-					  <div class="row">
-					   <form action="#">
-						<div class="file-field input-field">
-						  <div class="btn">
-							<span>File</span>
-							<input type="file" multiple>
-						  </div>
-						  <div class="file-path-wrapper">
-							<input class="file-path validate" type="text" id="" placeholder="Upload one or more files">
-						  </div>
-						</div>
-					  </form>
-					  </div>
-				  </div>
-			  </div>
+		<div class="container" id="pics_cam">
+			
 		  </div>
 		<script language="javascript" type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="../js/materialize.js"></script>
 	<script language="javascript" type="text/javascript" src="../js/my.js"></script>
 	<script>
-			 $(document).ready(function(){	 
-				$("#upload_one").addClass("hidden");
+		$(document).ready(function(){	 
+			$("#pics_cam").load('php/get_cam_info.php');
 		  });
-		
-		$( "#path" ).change(function() {
-  			$("#upload_one").removeClass("hidden");
-		});
 		
 		function save_info(id){
 			alert("ok");
@@ -245,6 +173,100 @@
 		  alert("Please Fill All The Details");
 		 } 
 
+		}
+		
+function do_up_main() {
+	ina = $("#path_main").val();
+	
+	if(ina != ""){
+    var file_data = $('#in_main').prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('file', file_data);                            
+    $.ajax({
+        url: 'php/up_one.php', // point to server-side PHP script 
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                        
+        type: 'post',
+        success: function(data){
+			if(data == "ok"){
+			   M.toast({html: "Erfolgreich hochgeladen!"})
+				$("#pics_cam").load('php/get_cam_info.php');
+			}else{
+				M.toast({html: "Error beim hochladen!"})
+			}
+        }
+     });
+		}else{
+			M.toast({html: "Kein Bild ausgewählt!"})
+		}
+}
+		
+function do_up_more() {
+	ina = $("#path_more").val();
+	
+	if(ina != ""){
+    var file_data = $('#in_more').prop('files')[0];   
+    var form_data = new FormData();                  
+    form_data.append('file', file_data);                            
+    $.ajax({
+        url: 'php/up_more.php', // point to server-side PHP script 
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                        
+        type: 'post',
+        success: function(data){
+			if(data == "ok"){
+			   M.toast({html: "Erfolgreich hochgeladen!"})
+				$("#pics_cam").load('php/get_cam_info.php');
+			}else{
+				M.toast({html: "Error beim hochladen!"})
+			}
+        }
+     });
+		}else{
+			M.toast({html: "Kein Bild ausgewählt!"})
+		}
+}
+		
+		function delete_main(id){
+			 $.ajax
+			  ({
+			  type:'post',
+			  url:'php/main_delete.php',
+			  data:{
+			   id:id
+			  },
+			  success:function(data) {
+				  M.toast({html: 'Main-Bild gelöscht!'})
+				  $("#pics_cam").load('php/get_cam_info.php');
+			  },			
+			  error:function() {
+				  M.toast({html: 'Main-Bild löschen fehlgeschlagen!'})
+			  }
+			  });
+		}
+		
+		function delete_more(id){
+			 $.ajax
+			  ({
+			  type:'post',
+			  url:'php/more_delete.php',
+			  data:{
+			   id:id
+			  },
+			  success:function(data) {
+				  M.toast({html: 'Bild gelöscht!'})
+				  $("#pics_cam").load('php/get_cam_info.php');
+			  },			
+			  error:function() {
+				  M.toast({html: 'Bild löschen fehlgeschlagen!'})
+			  }
+			  });
 		}
 	
 	</script>
