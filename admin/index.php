@@ -74,7 +74,7 @@
 			  },
 			  success:function(data) {
 				  if(data == "error"){
-					M.toast({html: 'Fehler beim Login!'})
+					M.toast({html: data})
 					$("#pre-loader").load('php/login_button.php');
 				  }else{
 					 window.location.href = "admin.php";
